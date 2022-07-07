@@ -1,11 +1,20 @@
 import mongoose from 'mongoose';
 
 const clienteSchema = new mongoose.Schema({
-    nome: {
+    nome_completo: {
         type: String,
         required: true
     },
+    cpf_cliente: {
+        type: String,
+    },
+    rg: {
+        type: String,
+    },
     email: {
+        type: String,
+    },
+    estado_civil: {
         type: String
     },
     data_nascimento: {
@@ -14,11 +23,17 @@ const clienteSchema = new mongoose.Schema({
     endereco: {
         type: String
     },
-    telefones: {
+    veiculo_terceiro: {
+        type: mongoose.SchemaTypes.ObjectId
+    },
+    veiculos: {
         type: Array
     },
-    moto: {
-        type: mongoose.SchemaTypes.ObjectId
+    possivel_cliente: {
+        type: String,
+    },
+    procurando: {
+        type: Object,
     }
 });
 

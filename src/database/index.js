@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mongoDB_URL = "mongodb+srv://main:032211@geral.el57i.mongodb.net/?retryWrites=true&w=majority";
+const mongoDB_URL = "mongodb+srv://main:032211@geral.el57i.mongodb.net/bd?retryWrites=true&w=majority";
 
 export const dbConnect = () => {
 
