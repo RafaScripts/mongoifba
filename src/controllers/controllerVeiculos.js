@@ -8,7 +8,57 @@ import {model_veiculo} from "../models/model_veiculo";
 
 class controllerVeiculos {
     async index(req, res) {
+        const { ok, des, pl, km, ct } = req.query;
+        
+        /* A query parameter that filters the results. */
+        if(ok){
+            const veiculos = await model_veiculo.find({disponivel: 'Sim'});
+            return res.json(veiculos);
+        }
+        
+        if(km){
+            const veiculos = await model_veiculo.find({disponivel: 'Sim'});
+            let km = veiculos.sort();
+            return res.json(km);
+        }
+        
+        if(ct){
+            const veiculos = await model_veiculo.find({disponivel: 'Sim'}).count();
+            
+            let data = {
+                total: veiculos
+            }
+            
+            return res.json(data);
+        }
+        
+        if(pl){
+            const veiculos = await model_veiculo.find({placa: pl});
+            return res.json(veiculos);
+        }
+        
+        
         const veiculos = await model_veiculo.find();
+        
+        if(des){
+            let despesa = [];
+    
+            veiculos.map(veiculo => {
+        
+                despesa.push(veiculo.despesas);
+        
+            });
+    
+            console.log(despesa);
+            
+            let data = {
+                veiculos: veiculos[0],
+                despesa: despesa[0]
+            }
+            
+            return res.json(data);
+        }
+        
         return res.json(veiculos);
     }
     async create (req, res){
